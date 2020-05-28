@@ -7,7 +7,7 @@ CREATE TABLE SONG
 (
     song_id  INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     artist   VARCHAR(60),
-    title    VARCHAR(60),
+    title    VARCHAR(100),
     language VARCHAR(60),
     edition  VARCHAR(60),
     genre    VARCHAR(60),
