@@ -1,14 +1,14 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/frontend/dist
-/frontend/tmp
-/frontend/out-tsc
+/frontend-angular/dist
+/frontend-angular/tmp
+/frontend-angular/out-tsc
 # Only exists if Bazel was run
-/frontend/bazel-out
+/frontend-angular/bazel-out
 
 # dependencies
-/frontend/node_modules
+/frontend-angular/node_modules
 
 # profiling files
 chrome-profiler-events*.json
@@ -16,7 +16,7 @@ speed-measure-plugin*.json
 
 # IDEs and editors
 /.idea
-/frontend/.idea
+/frontend-angular/.idea
 .project
 .classpath
 .c9/
@@ -33,15 +33,39 @@ speed-measure-plugin*.json
 .history/*
 
 # misc
-/frontend/.sass-cache
-/frontend/connect.lock
-/frontend/coverage
-/frontend/libpeerconnection.log
+/frontend-angular/.sass-cache
+/frontend-angular/connect.lock
+/frontend-angular/coverage
+/frontend-angular/libpeerconnection.log
 npm-debug.log
 yarn-error.log
 testem.log
-/frontend/typings
+/frontend-angular/typings
 
 # System Files
 .DS_Store
 Thumbs.db
+
+/frontend/dist
+/frontend/node_modules
+/frontend/.env
+
+/frontend/.DS_Store
+# local env files
+/frontend/.env.local
+/frontend/.env.*.local
+
+# Log files
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+/frontend/pnpm-debug.log*
+
+# Editor directories and files
+/frontend/.idea
+/frontend/.vscode
+/frontend/*.suo
+/frontend/*.ntvs*
+/frontend/*.njsproj
+/frontend/*.sln
+/frontend/*.sw?
