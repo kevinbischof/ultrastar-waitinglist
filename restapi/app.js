@@ -1,8 +1,9 @@
 const express = require('express');
 const bodyParser = require("body-parser");
 
-const personRoutes = require('./api/routes/person.routes');
+const songRoutes = require('./api/routes/song.routes');
 const userRoutes = require('./api/routes/user.routes');
+const singerRoutes = require('./api/routes/singer.routes');
 
 const app = express();
 const morgan = require('morgan');
@@ -30,8 +31,9 @@ app.use((req, res, next) => {
 });
 
 // Routes which should handle requests
-app.use('/persons', personRoutes);
+app.use('/songs', songRoutes);
 app.use('/users', userRoutes);
+app.use('/singer', singerRoutes);
 
 // Error handling
 app.use((req, res, next) => {
