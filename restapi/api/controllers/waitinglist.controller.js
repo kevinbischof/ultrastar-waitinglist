@@ -1,4 +1,4 @@
-const Person = require("../models/person.model.js");
+const Waitinglist = require("../models/waitinglist.model.js");
 
 // Create and Save
 exports.create = (req, res) => {
@@ -9,18 +9,17 @@ exports.create = (req, res) => {
         });
     }
 
-    // Create a Person
-    const person = new Person({
-        name: req.body.name,
-        firstname: req.body.firstname
+    // Create a Waitinglist
+    const waitinglist = new Waitinglist({
+        singer_id: req.body.singer_id
     });
 
     // Save in the database
-    Person.create(person, (err, data) => {
+    Waitinglist.create(waitinglist, (err, data) => {
         if (err)
             res.status(500).send({
                 message:
-                    err.message || "Some error occurred while creating the Person."
+                    err.message || "Some error occurred while creating the Waitinglist."
             });
         else res.send(data);
     });
@@ -28,27 +27,27 @@ exports.create = (req, res) => {
 
 // Retrieve all from the database
 exports.findAll = (req, res) => {
-    Person.getAll((err, data) => {
-        if (err)
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving persons."
-            });
-        else res.send(data);
-    });
+        Waitinglist.getAll((err, data) => {
+            if (err)
+                res.status(500).send({
+                    message:
+                        err.message || "Some error occurred while retrieving songs."
+                });
+            else res.send(data);
+        });
 };
 
 // Find a single with Id
 exports.findById = (req, res) => {
-    Person.findById(req.params.id, (err, data) => {
+    Waitinglist.findById(req.params.id, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({
-                    message: `Not found Person with id ${req.params.id}.`
+                    message: `Not found Song with id ${req.params.id}.`
                 });
             } else {
                 res.status(500).send({
-                    message: "Error retrieving Person with id " + req.params.id
+                    message: "Error retrieving Waitinglist with id " + req.params.id
                 });
             }
         } else res.send(data);
@@ -66,18 +65,18 @@ exports.update = (req, res) => {
 
     console.log("req.body: ", req.body);
 
-    Person.updateById(
+    Waitinglist.updateById(
         req.params.id,
-        new Person(req.body),
+        new Waitinglist(req.body),
         (err, data) => {
             if (err) {
                 if (err.kind === "not_found") {
                     res.status(404).send({
-                        message: `Not found Person with id ${req.params.id}.`
+                        message: `Not found Song with id ${req.params.id}.`
                     });
                 } else {
                     res.status(500).send({
-                        message: "Error updating Person with id " + req.params.id
+                        message: "Error updating Waitinglist with id " + req.params.id
                     });
                 }
             } else res.send(data);
@@ -85,19 +84,19 @@ exports.update = (req, res) => {
     )
 };
 
-// Delete a Person // Delete with the specified Id in the request the specified PersonId in the request
+// Delete a Waitinglist // Delete with the specified Id in the request the specified id in the request
 exports.delete = (req, res) => {
-    Person.remove(req.params.id, (err, data) => {
+    Waitinglist.remove(req.params.id, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({
-                    message: `Not found Person with id ${req.params.id}.`
+                    message: `Not found Song with id ${req.params.id}.`
                 });
             } else {
                 res.status(500).send({
-                    message: "Could not delete Person with id " + req.params.id
+                    message: "Could not delete Waitinglist with id " + req.params.id
                 });
             }
-        } else res.send({message: `Person was deleted successfully!`});
+        } else res.send({message: `Song was deleted successfully!`});
     });
 };

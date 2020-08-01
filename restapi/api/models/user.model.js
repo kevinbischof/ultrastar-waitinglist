@@ -42,10 +42,15 @@ User.findById = (id, result) => {
             return;
         }
         connection.query(`SELECT * FROM ${table} WHERE id = ${id}`, (err2, res) => {
-            if (res.length) {
-                result(null, res[0]);
-                return;
+            console.log('err2: ', err2)
+            console.log('res: ', res)
+            if (res) {
+                if (res.length) {
+                    result(null, res[0]);
+                    return;
+                }
             }
+
 
             // not found with the id
             result({kind: "not_found"}, null);
@@ -62,10 +67,15 @@ User.findByEmail = (email, result) => {
             return;
         }
         connection.query(`SELECT * FROM ${table} WHERE email = ?`, [email], (err2, res) => {
-            if (res.length >= 1) {
-                // found User with the email
-                result({kind: "found"}, res[0]);
-                return;
+            if (err2) {
+                console.log(err2)
+            }
+            if (res) {
+                if (res.length >= 1) {
+                    // found User with the email
+                    result({kind: "found"}, res[0]);
+                    return;
+                }
             }
 
             // not found with the id

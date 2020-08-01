@@ -33,14 +33,27 @@ exports.create = (req, res) => {
 
 // Retrieve all from the database
 exports.findAll = (req, res) => {
-    Song.getAll((err, data) => {
-        if (err)
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving songs."
-            });
-        else res.send(data);
-    });
+    if (req.query.term) {
+        Song.findByTerm(req.query.term,(err, data) => {
+            console.log('entered song.controller Song.findByTerm: ', req.query.term)
+            console.log('data: ', data)
+            if (err)
+                res.status(500).send({
+                    message:
+                        err.message || "Some error occurred while retrieving songs by term."
+                });
+            else res.send(data);
+        });
+    } else {
+        Song.getAll((err, data) => {
+            if (err)
+                res.status(500).send({
+                    message:
+                        err.message || "Some error occurred while retrieving songs."
+                });
+            else res.send(data);
+        });
+    }
 };
 
 // Find a single with Id

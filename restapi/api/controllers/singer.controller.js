@@ -14,7 +14,6 @@ exports.create = (req, res) => {
     const singer = new Singer({
         name: req.body.name,
         song_id: req.body.song_id,
-        waitinglist_id: req.body.waitinglist_id,
     });
 
     // Save in the database

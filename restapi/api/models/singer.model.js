@@ -5,7 +5,6 @@ const table = 'singer';
 const Singer = function (object) {
     this.name = object.name;
     this.song_id = object.song_id;
-    this.waitinglist_id = object.waitinglist_id;
 };
 
 Singer.create = (newObject, result) => {
