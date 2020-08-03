@@ -4,6 +4,9 @@ import Home from '../views/Home.vue'
 import Login from "../auth/Login";
 import Songs from "../components/Songs";
 import Singer from "../components/Singer";
+import Waitinglist from "../components/Waitinglist";
+import Events from "../components/Events";
+import EventForm from "../components/EventForm";
 
 Vue.use(VueRouter)
 
@@ -35,6 +38,22 @@ Vue.use(VueRouter)
       path: '/singer',
       name: 'Singer',
       component: Singer
+    },
+    {
+      path: '/waitinglist',
+      name: 'Waitinglist',
+      component: Waitinglist
+    },
+    {
+      path: '/events',
+      name: 'Events',
+      component: Events
+    }
+    ,
+    {
+      path: '/event/add',
+      name: 'EventForm',
+      component: EventForm
     }
 ]
 

@@ -1,13 +1,12 @@
 const sql = require("./db");
-const table = 'person';
+const table = 'waitinglist';
 
 // constructor
-const Person = function (object) {
-    this.name = object.name;
-    this.firstname = object.firstname;
+const Waitinglist = function (object) {
+    this.singer_id = object.singer_id;
 };
 
-Person.create = (newObject, result) => {
+Waitinglist.create = (newObject, result) => {
     sql.getConnection(function (err, connection) {
         if (err) {
             console.log("error: ", err);
@@ -26,7 +25,7 @@ Person.create = (newObject, result) => {
     });
 };
 
-Person.findById = (id, result) => {
+Waitinglist.findById = (id, result) => {
     sql.getConnection(function (err, connection) {
         if (err) {
             console.log("error: ", err);
@@ -37,7 +36,7 @@ Person.findById = (id, result) => {
             console.log(res);
             if (res != undefined) {
                 if (res.length) {
-                    console.log("found person: ", res[0]);
+                    console.log("found singer: ", res[0]);
                     result(null, res[0]);
                     return;
                 }
@@ -53,7 +52,7 @@ Person.findById = (id, result) => {
     });
 };
 
-Person.getAll = result => {
+Waitinglist.getAll = result => {
     sql.getConnection(function (err, connection) {
         if (err) {
             console.log("error: ", err);
@@ -61,14 +60,14 @@ Person.getAll = result => {
             return;
         }
         connection.query(`SELECT * FROM ${table}`, (err2, res) => {
-            console.log("persons: ", res);
+            console.log("singers: ", res);
             result(null, res);
         });
         connection.release();
     });
 };
 
-Person.updateById = (id, object, result) => {
+Waitinglist.updateById = (id, object, result) => {
     sql.getConnection(function (err, connection) {
         if (err) {
             console.log("error: ", err);
@@ -84,11 +83,11 @@ Person.updateById = (id, object, result) => {
                 }
             }
             connection.query(
-                `UPDATE ${table} SET name = ?, firstname = ? WHERE id = ?`,
-                [object.name, object.firstname, id],
+                `UPDATE ${table} SET singer_id = ? WHERE id = ?`,
+                [object.singer_id, id],
                 (err2, res) => {
                     if (res.affectedRows == 0) {
-                        // not found Person with the id
+                        // not found Singer with the id
                         result({kind: "not_found"}, null);
                         return;
                     }
@@ -100,7 +99,7 @@ Person.updateById = (id, object, result) => {
     });
 };
 
-Person.remove = (id, result) => {
+Waitinglist.remove = (id, result) => {
     sql.getConnection(function (err, connection) {
         if (err) {
             console.log("error: ", err);
@@ -127,4 +126,4 @@ Person.remove = (id, result) => {
     });
 };
 
-module.exports = Person;
+module.exports = Waitinglist;

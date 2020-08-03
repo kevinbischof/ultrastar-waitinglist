@@ -27,9 +27,10 @@
         props: ["song"],
         methods: {
             send: function () {
+                console.log('actual song: ', this.song)
                 axios.post(`${process.env.VUE_APP_API_URL}/singer`, {
                     name: this.name,
-                    song_id: this.song.song_id
+                    song_id: this.song.id
                 }, {
                     headers: {
                         Authorization: 'Baerer ' + localStorage.getItem('token')

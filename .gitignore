@@ -16,6 +16,7 @@ speed-measure-plugin*.json
 
 # IDEs and editors
 /.idea
+/database/.idea
 /frontend-angular/.idea
 .project
 .classpath
@@ -49,6 +50,7 @@ Thumbs.db
 /frontend/dist
 /frontend/node_modules
 /frontend/.env
+/frontend/package-lock.json
 
 /frontend/.DS_Store
 # local env files

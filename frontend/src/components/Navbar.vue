@@ -7,17 +7,23 @@
             </v-toolbar-title>
             <v-btn text color="grey" v-if="isLogedIn">
                 <router-link to="/songs" class="nav-link">Songs</router-link>
-<!--                <a href="/#/songs"><span>Songs</span></a>-->
-                <!--                <v-icon>exit_to_app</v-icon>-->
             </v-btn>
+            <v-btn text color="grey" v-if="isLogedIn">
+                <router-link to="/events" class="nav-link">Events</router-link>
+            </v-btn>
+            <v-btn text color="grey" v-if="isLogedIn">
+                <router-link to="/waitinglist" class="nav-link">Waitinglist</router-link>
+            </v-btn>
+
             <v-spacer></v-spacer>
+
             <v-btn v-if="!isLogedIn" text color="grey">
+                <v-icon>mdi-login</v-icon>
                 <a href="/#/login"><span>Sign In</span></a>
-<!--                <v-icon>exit_to_app</v-icon>-->
             </v-btn>
             <v-btn v-if="isLogedIn" v-on:click="logout" text color="grey">
+                <v-icon>mdi-logout-variant</v-icon>
                 <span>Sign Out</span>
-                <!--                <v-icon>exit_to_app</v-icon>-->
             </v-btn>
         </v-toolbar>
     </nav>

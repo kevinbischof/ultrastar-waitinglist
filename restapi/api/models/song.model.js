@@ -58,6 +58,35 @@ Song.findById = (id, result) => {
     });
 };
 
+Song.findByTerm = (term, result) => {
+    console.log('entered song.model Song.findByTerm')
+    sql.getConnection(function (err, connection) {
+        if (err) {
+            console.log("error: ", err);
+            result(err, null);
+            return;
+        }
+        connection.query(`SELECT * FROM ${table} WHERE title LIKE '%${term}%' OR artist LIKE '%${term}%' LIMIT 50`, (err2, res) => {
+            console.log(res);
+            if (res != undefined) {
+                if (res.length) {
+                    console.log("found song: ", res[0]);
+                    result(null, res);
+                    return;
+                }
+            } else {
+                result({kind: "not_found"}, null);
+            }
+
+
+            // not found with the id
+            result({kind: "not_found"}, null);
+        });
+        connection.release();
+        console.log('released connection to pool')
+    });
+};
+
 Song.getAll = result => {
     sql.getConnection(function (err, connection) {
         if (err) {
@@ -66,7 +95,7 @@ Song.getAll = result => {
             return;
         }
         connection.query(`SELECT * FROM ${table}`, (err2, res) => {
-            console.log("songs: ", res);
+            // console.log("songs: ", res);
             result(null, res);
         });
         connection.release();

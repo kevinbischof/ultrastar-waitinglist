@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const songRoutes = require('./api/routes/song.routes');
 const userRoutes = require('./api/routes/user.routes');
 const singerRoutes = require('./api/routes/singer.routes');
+const waitinglistRoutes = require('./api/routes/waitinglist.routes');
 
 const app = express();
 const morgan = require('morgan');
@@ -34,6 +35,7 @@ app.use((req, res, next) => {
 app.use('/songs', songRoutes);
 app.use('/users', userRoutes);
 app.use('/singer', singerRoutes);
+app.use('/waitinglist', waitinglistRoutes);
 
 // Error handling
 app.use((req, res, next) => {
